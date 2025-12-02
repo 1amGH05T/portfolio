@@ -2,28 +2,40 @@
 {% load static %}
 
 {% block content %}
-<div class="py-12 bg-gray-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+<div class="py-20 bg-gradient-to-b from-slate-950 via-purple-950 to-pink-950 min-h-screen">
+    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
+        <div class="bg-black/30 backdrop-blur-2xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            
             {% if project.image %}
-            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-96 object-cover">
+            <div class="relative overflow-hidden">
+                <img src="{{ project.image.url }}"
+                     alt="{{ project.title }}"
+                     class="w-full h-96 md:h-[500px] object-cover transition-transform duration-[8000ms] hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+            </div>
             {% endif %}
 
-            <div class="p-8">
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">{{ project.title }}</h1>
-                
-                <div class="prose prose-lg max-w-none text-gray-700 mb-8">
+            <div class="p-10 md:p-16">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-8 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    {{ project.title }}
+                </h1>
+
+                <div class="prose prose-lg max-w-none text-gray-200 leading-relaxed mb-12 opacity-90">
                     {{ project.description|linebreaks }}
                 </div>
 
-                <div class="flex items-center gap-6">
-                    <a href="/" class="text-indigo-600 hover:text-indigo-800 font-semibold">
-                        ← Back to Projects
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <a href="/" 
+                       class="group flex items-center gap-3 text-pink-400 font-semibold hover:text-pink-300 transition-colors duration-300">
+                        <span class="group-hover:-translate-x-2 transition-transform duration-300">←</span>
+                        Back to Projects
                     </a>
 
                     {% if project.url %}
-                    <a href="{{ project.url }}" target="_blank" class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700">
+                    <a href="{{ project.url }}" target="_blank"
+                       class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:from-purple-500 hover:to-pink-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300">
                         Visit Live Site
+                        <span class="group-hover:translate-x-2 transition-transform duration-300">→</span>
                     </a>
                     {% endif %}
                 </div>
